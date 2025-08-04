@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaurika Gupta - Mathematics Student & ML Engineer</title>
+  <meta name="description" content="Mathematics student at University of Waterloo specializing in Machine Learning, Full-stack Development, and Data Science.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Reset and Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.7;
+        color: #e2e8f0;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        overflow-x: hidden;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    body.loaded {
+        opacity: 1;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        z-index: 1000;
+        padding: 1.2rem 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+        background: rgba(15, 23, 42, 0.98);
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo a {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        letter-spacing: -0.02em;
+    }
+
+    .nav-logo a:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.2);
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+    }
+
+    .nav-link {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
+        letter-spacing: -0.01em;
+    }
+
+    .nav-link:hover {
+        color: #3b82f6;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -8px;
+        left: 0;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        transition: width 0.3s ease;
+        border-radius: 1px;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .bar {
+        width: 28px;
+        height: 3px;
+        background-color: #cbd5e1;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
+    /* Home Section */
+    .home {
+        height: 100vh;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .home-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(135deg, rgba(15, 23, 42, 0.2) 0%, rgba(30, 41, 59, 0.3) 100%),
+            url('images/university-background.jpg') center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        z-index: 1;
+    }
+
+    .home-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 41, 59, 0.5) 100%);
+        z-index: 2;
+    }
+
+    .home::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.1;
+        z-index: 3;
+    }
+
+    .home-content {
+        position: relative;
+        z-index: 4;
+    }
+
+    .home-content h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .home-content h2 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.25rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.3s forwards;
+        color: #e2e8f0;
+    }
+
+    .home-content p {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.6s forwards;
+        color: #cbd5e1;
+        line-height: 1.8;
+    }
+
+    .home-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.9s forwards;
+    }
+
+    .btn {
+        padding: 16px 40px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -0.01em;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        color: #f8fafc;
+        border: 2px solid rgba(59, 130, 246, 0.4);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.8);
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .scroll-arrow {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #3b82f6;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg);
+        animation: bounce 2s infinite;
+    }
+
+    /* Section Styles */
+    section {
+        padding: 120px 0;
+        position: relative;
+    }
+
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 4rem;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        font-weight: 700;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+
+    /* About Section */
+    .about {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.05), transparent 70%);
+        pointer-events: none;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 6rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-image {
+        position: relative;
+    }
+
+    .headshot {
+        width: 350px;
+        height: 350px;
+        border-radius: 24px;
+        object-fit: cover;
+        transition: all 0.4s ease;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        border: 3px solid transparent;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        background-clip: padding-box;
+    }
+
+    .headshot:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 30px 80px rgba(59, 130, 246, 0.3);
+    }
+
+    .about-info h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+    }
+
+    .about-info p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: #cbd5e1;
+        margin-bottom: 1.5rem;
+    }
+
+    .skills-section {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .skills-column {
+        background: linear-gradient(145deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+        padding: 2.5rem;
+        border-radius: 24px;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(15px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skills-column::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .skills-column::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+
+    .skills-column:hover::before {
+        opacity: 1;
+    }
+
+    .skills-column:hover::after {
+        opacity: 1;
+    }
+
+    .skills-column:hover {
+        transform: translateY(-12px) scale(1.02);
+        background: linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
+    }
+
+    .skills-column h3 {
+        color: #3b82f6;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .skills-column h3 i {
+        font-size: 1.6rem;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .skill-tag {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+        color: #f8fafc;
+        padding: 0.75rem 1.25rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .skill-tag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .skill-tag:hover::before {
+        left: 100%;
+    }
+
+    .skill-tag:hover {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+        border-color: rgba(59, 130, 246, 0.6);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        color: #ffffff;
+    }
+
+    /* Cards Section Styles */
+    .cards-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cards-section:nth-of-type(even) {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+
+    .cards-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.03), transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Scroll Controls */
+    .scroll-controls {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 10;
+        pointer-events: none;
+        padding: 0 2rem;
+    }
+
+    .scroll-btn {
+        background: rgba(59, 130, 246, 0.1);
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        color: #3b82f6;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        pointer-events: auto;
+    }
+
+    .scroll-btn:hover {
+        background: rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.6);
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .scroll-btn:active {
+        transform: scale(0.95);
+    }
+
+    .horizontal-scroll-container {
+        position: relative;
+        margin-top: 4rem;
+        overflow: hidden;
+    }
+
+    .scroll-content {
+        display: flex;
+        gap: 2rem;
+        transition: transform 0.5s ease;
+        width: max-content;
+    }
+
+    .scroll-progress {
+        position: absolute;
+        bottom: -3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 4px;
+        background: rgba(59, 130, 246, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .scroll-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+        width: 0%;
+    }
+
+    .card {
+        min-width: 380px;
+        max-width: 380px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(20px);
+        cursor: pointer;
+        position: relative;
+        height: auto;
+        min-height: 240px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+        opacity: 1;
+    }
+
+    .card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: flex-start;
+        padding: 2.5rem;
+        gap: 1.5rem;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        object-fit: cover;
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        background: rgba(59, 130, 246, 0.1);
+        flex-shrink: 0;
+    }
+
+    .card-title {
+        flex: 1;
+    }
+
+    .card-title h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+
+    .company-name {
+        color: #3b82f6;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .date-range, .project-tech {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .toggle-btn {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: #3b82f6;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0.75rem;
+        border-radius: 12px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .toggle-btn:hover {
+        background: rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.5);
+        transform: scale(1.1);
+    }
+
+    .toggle-btn.active {
+        transform: rotate(180deg);
+        background: rgba(139, 92, 246, 0.2);
+        border-color: rgba(139, 92, 246, 0.5);
+        color: #8b5cf6;
+    }
+
+    .card-body {
+        display: none;
+        padding: 0 2.5rem 2.5rem;
+        list-style: none;
+        animation: fadeInUp 0.3s ease;
+        overflow-y: auto;
+        max-height: 200px;
+        flex-grow: 1;
+    }
+
+    .card-body.active {
+        display: block;
+    }
+
+    .card-body li {
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    .card-body li::before {
+        content: '→';
+        color: #3b82f6;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    /* Certifications Section */
+    .certifications {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        position: relative;
+    }
+
+    .certifications::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.05), transparent 70%);
+        pointer-events: none;
+    }
+
+    .cert-card {
+        min-width: 320px;
+        max-width: 320px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        border-radius: 24px;
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(20px);
+        cursor: pointer;
+        position: relative;
+        height: auto;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cert-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .cert-card:hover::before {
+        opacity: 1;
+    }
+
+    .cert-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: rgba(139, 92, 246, 0.6);
+        box-shadow: 0 30px 60px rgba(139, 92, 246, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cert-icon {
+        font-size: 3.5rem;
+        background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .cert-card h3 {
+        color: #f8fafc;
+        margin-bottom: 0.75rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .cert-card p {
+        color: #94a3b8;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .cert-card a {
+        color: #8b5cf6;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 12px;
+        display: inline-block;
+        background: rgba(139, 92, 246, 0.1);
+        margin-top: auto;
+    }
+
+    .cert-card a:hover {
+        background: rgba(139, 92, 246, 0.2);
+        border-color: rgba(139, 92, 246, 0.6);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+    }
+
+    /* Contact Section */
+    .contact {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        position: relative;
+    }
+
+    .contact::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.03), transparent 70%);
+        pointer-events: none;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact-info h3 {
+        font-family: 'Playfair Display', serif;
+        color: #3b82f6;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .contact-info p {
+        color: #cbd5e1;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        font-size: 1.1rem;
+    }
+
+    .contact-info a {
+        color: #3b82f6;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .contact-info a:hover {
+        color: #8b5cf6;
+        text-decoration: underline;
+    }
+
+    .form-message {
+        margin-top: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-weight: 500;
+    }
+
+    .form-message.success {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .form-message.error {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    #contactForm {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 3rem;
+        border-radius: 24px;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(20px);
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+        width: 100%;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(59, 130, 246, 0.2);
+        border-radius: 12px;
+        color: #f8fafc;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    #contactForm input:focus,
+    #contactForm textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    #contactForm input::placeholder,
+    #contactForm textarea::placeholder {
+        color: #94a3b8;
+    }
+
+    #contactForm button {
+        width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        padding: 3rem 0;
+        text-align: center;
+        border-top: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .footer p {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0) rotate(-45deg);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-10px) rotate(-45deg);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-5px) rotate(-45deg);
+        }
+    }
+
+    /* Typing Animation */
+    #typing-text {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        border-right: 2px solid #3b82f6;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50% { border-color: #3b82f6; }
+        51%, 100% { border-color: transparent; }
+    }
+
+    /* Auto-scroll animation */
+    @keyframes autoScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .scroll-content.auto-scrolling {
+        animation: autoScroll 30s linear infinite;
+    }
+
+    .scroll-content.paused {
+        animation-play-state: paused;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex;
+        }
+        
+        .nav-menu {
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            flex-direction: column;
+            background-color: rgba(15, 23, 42, 0.98);
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+            padding: 2rem 0;
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .nav-menu.active {
+            left: 0;
+        }
+        
+        .home-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .home-content h2 {
+            font-size: 1.5rem;
+        }
+        
+        .home-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .headshot {
+            width: 280px;
+            height: 280px;
+        }
+        
+        .skills-section {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        
+        .card {
+            min-width: 320px;
+            max-width: 320px;
+        }
+        
+        .cert-card {
+            min-width: 280px;
+            max-width: 280px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .scroll-controls {
+            position: relative;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .home-content h1 {
+            font-size: 2rem;
+        }
+        
+        .home-content h2 {
+            font-size: 1.2rem;
+        }
+        
+        .card {
+            min-width: 300px;
+            max-width: 300px;
+        }
+        
+        .cert-card {
+            min-width: 260px;
+            max-width: 260px;
+            padding: 2rem;
+        }
+        
+        .card-header {
+            padding: 2rem;
+        }
+        
+        .card-body {
+            padding: 0 2rem 2rem;
+        }
+        
+        .skills-section {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo"><a href="#home">Gaurika Gupta</a></div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="home">
+    <div class="home-background-image"></div>
+    <div class="home-overlay"></div>
+    <div class="home-content">
+      <h1>Hi, I'm <span class="highlight">Gaurika Gupta</span></h1>
+      <h2>I'm a <span id="typing-text"></span></h2>
+      <p>Mathematics student at University of Waterloo with expertise in Machine Learning, Full-stack Development, and Data Science. Passionate about solving complex problems through innovative technological solutions.</p>
+      <div class="home-buttons">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#about" class="btn btn-secondary">Learn More</a>
+        <a href="https://linkedin.com/in/gaurikagupta1" target="_blank" class="btn btn-secondary">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="images/Gaurika headshot LinkedIn pic.jpg" alt="Gaurika Gupta - Mathematics Student at University of Waterloo" class="headshot" />
+        </div>
+        <div class="about-info">
+          <h3>Mathematics Student & Technology Enthusiast</h3>
+          <p>I'm currently pursuing a <strong>Bachelor of Mathematics with a Minor in Computing</strong> at the University of Waterloo, one of Canada's top universities for mathematics and computer science.</p>
+          <p>My academic journey focuses on <strong>Applied Mathematics and Scientific Machine Learning</strong>, where I blend rigorous mathematical theory with practical applications in data science and software development.</p>
+          <p>I'm passionate about leveraging mathematical models and computational techniques to solve real-world problems, from infectious disease modeling to automated business solutions.</p>
+          
+          <div class="skills-section">
+            <div class="skills-column">
+              <h3><i class="fas fa-code"></i> Programming Languages</h3>
+              <div class="skills-list">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">R</span>
+                <span class="skill-tag">C/C++</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">HTML/CSS</span>
+              </div>
+            </div>
+            <div class="skills-column">
+              <h3><i class="fas fa-tools"></i> Technologies & Platforms</h3>
+              <div class="skills-list">
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Bash</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">SharePoint</span>
+                <span class="skill-tag">Amazon QuickSight</span>
+                <span class="skill-tag">Azure</span>
+              </div>
+            </div>
+            <div class="skills-column">
+              <h3><i class="fas fa-laptop-code"></i> Tools & Software</h3>
+              <div class="skills-list">
+                <span class="skill-tag">Microsoft Excel</span>
+                <span class="skill-tag">Jupyter Notebooks</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">LaTeX</span>
+                <span class="skill-tag">Cloud Services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="cards-section">
+    <div class="container">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="scroll-controls">
+        <button class="scroll-btn scroll-left" data-section="experience"><i class="fas fa-chevron-left"></i></button>
+        <button class="scroll-btn scroll-right" data-section="experience"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="horizontal-scroll-container">
+        <div class="scroll-content auto-scrolling" id="experience-scroll">
+          <div class="card">
+            <div class="card-header">
+              <img src="images/KP-logo.jpg" alt="Kal Polymers Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Full Stack Developer</h3>
+                <p class="company-name">Kal Polymers</p>
+                <p class="date-range">May 2025 – Aug 2025 | Mississauga, ON, Canada</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Built an interactive visual inventory report on their website using React, Flask, and SQL, integrated with Epicor ERP, allowing users to identify where materials are stored on a plant layout and instantly view live quantities and properties—improving inventory traceability and warehouse planning.</li>
+              <li>Implemented advanced filters for material type, inventory status (finished, WIP, scrap), colour, and end date, enabling precise searches and highlighting matching inventory zones—making it easy for staff to locate specific materials across the facility.</li>
+              <li>Developed real-time Andon dashboards for sorting and baling operations using React and Flask APIs, displaying current jobs, upcoming tasks, progress metrics, and inventory stats—boosting operator efficiency, tracking, and productivity.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="images/UWPM-logo.jpg" alt="Product Management Club Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Full Stack Developer</h3>
+                <p class="company-name">Product Management Club</p>
+                <p class="date-range">Jun 2024 – Present | Waterloo, ON, Canada</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Resolved 20+ website bugs and enhanced UI responsiveness, improving user interaction with features like animated countdowns and interactive tools using HTML, CSS, and JavaScript.</li>
+              <li>Developed an automated system to fetch and display 8 years of executive lists using Google Sheets API, reducing manual updates by 90% and improving data accessibility.</li>
+              <li>Partnered with 3 designers and 2 executives to refine site navigation, reducing users' average clicks.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="images/WiM-logo.jpg" alt="Directed Reading Program Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Research Assistant</h3>
+                <p class="company-name">Directed Reading Program</p>
+                <p class="date-range">Sep 2024 – Dec 2024 | Waterloo, ON, Canada</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Collaborated with a PhD mentor to model infectious disease spread, examining the interrelationships between birth rates, recovery rates, and susceptibility in SIR and SIER models.</li>
+              <li>Applied Python for data analysis and simulation, visualizing how changing parameters affect disease spread and containment conditions.</li>
+              <li>Delivered a presentation to the Math department, showcasing the practical applications of our research and its relevance to real-world epidemic management.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="images/bluent-logo.jpg" alt="Bluent E Solutions Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Data Analyst</h3>
+                <p class="company-name">Bluent E Solutions</p>
+                <p class="date-range">Jul 2024 – Aug 2024 | New Delhi, India</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Built Amazon QuickSight dashboards to analyze performance metrics such as leadership, discipline, task efficiency for 100+ employees across 5 departments.</li>
+              <li>Created SQL queries to calculate overall employee ratings based on key performance indicators such as soft skills discipline, leadership, customer focus, business results, and functional job activity.</li>
+              <li>Designed dashboards with filters for departments, ratings, and KPIs, enabling decisions for managers.</li>
+            </ul>
+          </div>
+
+          <!-- Duplicate cards for infinite scroll effect -->
+          <div class="card">
+            <div class="card-header">
+              <img src="images/KP-logo.jpg" alt="Kal Polymers Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Full Stack Developer</h3>
+                <p class="company-name">Kal Polymers</p>
+                <p class="date-range">May 2025 – Aug 2025 | Mississauga, ON, Canada</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Built an interactive visual inventory report on their website using React, Flask, and SQL, integrated with Epicor ERP, allowing users to identify where materials are stored on a plant layout and instantly view live quantities and properties—improving inventory traceability and warehouse planning.</li>
+              <li>Implemented advanced filters for material type, inventory status (finished, WIP, scrap), colour, and end date, enabling precise searches and highlighting matching inventory zones—making it easy for staff to locate specific materials across the facility.</li>
+              <li>Developed real-time Andon dashboards for sorting and baling operations using React and Flask APIs, displaying current jobs, upcoming tasks, progress metrics, and inventory stats—boosting operator efficiency, tracking, and productivity.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="images/UWPM-logo.jpg" alt="Product Management Club Logo" class="logo"/>
+              <div class="card-title">
+                <h3>Full Stack Developer</h3>
+                <p class="company-name">Product Management Club</p>
+                <p class="date-range">Jun 2024 – Present | Waterloo, ON, Canada</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Resolved 20+ website bugs and enhanced UI responsiveness, improving user interaction with features like animated countdowns and interactive tools using HTML, CSS, and JavaScript.</li>
+              <li>Developed an automated system to fetch and display 8 years of executive lists using Google Sheets API, reducing manual updates by 90% and improving data accessibility.</li>
+              <li>Partnered with 3 designers and 2 executives to refine site navigation, reducing users' average clicks.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scroll-progress">
+          <div class="scroll-progress-bar" id="experience-progress"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="cards-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="scroll-controls">
+        <button class="scroll-btn scroll-left" data-section="projects"><i class="fas fa-chevron-left"></i></button>
+        <button class="scroll-btn scroll-right" data-section="projects"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="horizontal-scroll-container">
+        <div class="scroll-content auto-scrolling" id="projects-scroll">
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f59e0b' rx='12'/%3E%3Cg transform='translate(15,15)'%3E%3Ccircle cx='35' cy='20' r='12' fill='white'/%3E%3Ccircle cx='35' cy='20' r='8' fill='%23f59e0b'/%3E%3Crect x='20' y='35' width='30' height='20' rx='3' fill='white'/%3E%3Crect x='25' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='35' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='45' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='25' y='45' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='45' y='45' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='25' y='50' width='20' height='3' fill='%23f59e0b'/%3E%3Ccircle cx='15' cy='45' r='3' fill='white'/%3E%3Ccircle cx='55' cy='45' r='3' fill='white'/%3E%3C/g%3E%3C/svg%3E" alt="AI Cover Letter Generator" class="logo"/>
+              <div class="card-title">
+                <h3>AI Cover Letter Generator</h3>
+                <p class="project-tech">Feb 2025 | Perplexity API, Python, HTML, CSS</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Designed AI tool using Perplexity API & Python, automating personalized cover letter generation and reducing application time by 80%</li>
+              <li>Created a Python profile system to store resume, skills, and projects, streamlining job applications with reusable templates</li>
+              <li>Enabled users to edit AI-generated letters with HTML/CSS interface, ensuring ATS-friendly format and professional customization</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2306b6d4' rx='8'/%3E%3Cg transform='translate(10,10)'%3E%3Crect x='5' y='5' width='10' height='10' fill='%23ff6b6b'/%3E%3Crect x='20' y='5' width='10' height='10' fill='%234ecdc4'/%3E%3Crect x='35' y='5' width='10' height='10' fill='%23ffe66d'/%3E%3Crect x='50' y='5' width='10' height='10' fill='%23a8e6cf'/%3E%3Crect x='65' y='5' width='10' height='10' fill='%23ff8b94'/%3E%3Crect x='5' y='20' width='10' height='10' fill='%23b4a7d6'/%3E%3Crect x='20' y='20' width='10' height='10' fill='%23d4a574'/%3E%3Crect x='35' y='20' width='10' height='10' fill='%2395e1d3'/%3E%3Crect x='50' y='20' width='10' height='10' fill='%23f38ba8'/%3E%3Crect x='65' y='20' width='10' height='10' fill='%23a6e3a1'/%3E%3Crect x='20' y='35' width='10' height='10' fill='%23fab387'/%3E%3Crect x='35' y='35' width='10' height='10' fill='%2389b4fa'/%3E%3Crect x='50' y='35' width='10' height='10' fill='%23cba6f7'/%3E%3Crect x='35' y='50' width='10' height='10' fill='%23f9e2af'/%3E%3Crect x='50' y='50' width='10' height='10' fill='%23eba0ac'/%3E%3Crect x='35' y='65' width='10' height='10' fill='%2394e2d5'/%3E%3C/g%3E%3C/svg%3E" alt="Tetris Game" class="logo"/>
+              <div class="card-title">
+                <h3>Tetris Game</h3>
+                <p class="project-tech">Dec 2024 | C++, Git, Linux</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Built a two-player Tetris game in C++ with both graphical and console modes, featuring multiple difficulty levels and row clearing mechanics</li>
+              <li>Implemented competitive "Blind" effect that temporarily obscures opponent's board when clearing two rows, adding strategic gameplay elements</li>
+              <li>Added high score tracking, multi-round gameplay, and restart functionality for enhanced user experience and replayability</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dc2626' rx='8'/%3E%3Cg transform='translate(15,20)'%3E%3Cpath d='M35 5 Q45 0 55 5 Q60 10 55 20 L50 25 Q45 30 40 25 L35 20 Q30 10 35 5' fill='white'/%3E%3Cpath d='M25 40 Q35 35 45 40 Q50 45 45 55 L40 60 Q35 65 30 60 L25 55 Q20 45 25 40' fill='white'/%3E%3Cpath d='M5 25 Q15 20 25 25 Q30 30 25 40 L20 45 Q15 50 10 45 L5 40 Q0 30 5 25' fill='white'/%3E%3Ctext x='35' y='20' font-family='Arial, sans-serif' font-size='12' font-weight='bold' text-anchor='middle' fill='%23dc2626'%3EA%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Amazon Price Tracker" class="logo"/>
+              <div class="card-title">
+                <h3>Amazon Price Tracker</h3>
+                <p class="project-tech">Feb 2023 | Python, BeautifulSoup, APIs</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Developed a Python price tracker using BeautifulSoup to scrape real-time Amazon product prices and monitor price fluctuations</li>
+              <li>Implemented automated notification system to alert users about price drops via email, helping optimize purchasing decisions and save money</li>
+              <li>Added database storage for price history tracking and trend analysis, enabling users to make informed buying decisions</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%237c3aed' rx='8'/%3E%3Cg transform='translate(10,15)'%3E%3Crect x='5' y='5' width='70' height='45' rx='3' fill='white'/%3E%3Crect x='10' y='10' width='60' height='25' fill='%237c3aed'/%3E%3Crect x='15' y='15' width='15' height='3' fill='white'/%3E%3Crect x='15' y='20' width='25' height='3' fill='white'/%3E%3Crect x='15' y='25' width='20' height='3' fill='white'/%3E%3Ccircle cx='60' cy='22' r='8' fill='white'/%3E%3Crect x='10' y='40' width='20' height='5' rx='2' fill='%237c3aed'/%3E%3Crect x='35' y='40' width='20' height='5' rx='2' fill='%237c3aed'/%3E%3Crect x='60' y='40' width='15' height='5' rx='2' fill='%237c3aed'/%3E%3Crect x='20' y='55' width='40' height='8' rx='3' fill='white'/%3E%3Crect x='25' y='58' width='30' height='2' fill='%237c3aed'/%3E%3C/g%3E%3C/svg%3E" alt="Portfolio Website" class="logo"/>
+              <div class="card-title">
+                <h3>Interactive Portfolio Website</h3>
+                <p class="project-tech">2024 | HTML, CSS, JavaScript, Responsive Design</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Designed and developed a fully responsive portfolio website showcasing modern UI/UX principles and professional presentation</li>
+              <li>Implemented smooth animations, interactive elements, and mobile-first design approach for optimal user engagement across all devices</li>
+              <li>Created dynamic typing effects, scroll-based animations, and enhanced visual appeal with optimized performance</li>
+              <li>Integrated contact form with EmailJS for direct communication and ensured accessibility standards compliance</li>
+            </ul>
+          </div>
+
+          <!-- Duplicate cards for infinite scroll -->
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f59e0b' rx='12'/%3E%3Cg transform='translate(15,15)'%3E%3Ccircle cx='35' cy='20' r='12' fill='white'/%3E%3Ccircle cx='35' cy='20' r='8' fill='%23f59e0b'/%3E%3Crect x='20' y='35' width='30' height='20' rx='3' fill='white'/%3E%3Crect x='25' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='35' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='45' y='40' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='25' y='45' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='45' y='45' width='5' height='3' fill='%23f59e0b'/%3E%3Crect x='25' y='50' width='20' height='3' fill='%23f59e0b'/%3E%3Ccircle cx='15' cy='45' r='3' fill='white'/%3E%3Ccircle cx='55' cy='45' r='3' fill='white'/%3E%3C/g%3E%3C/svg%3E" alt="AI Cover Letter Generator" class="logo"/>
+              <div class="card-title">
+                <h3>AI Cover Letter Generator</h3>
+                <p class="project-tech">Feb 2025 | Perplexity API, Python, HTML, CSS</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Designed AI tool using Perplexity API & Python, automating personalized cover letter generation and reducing application time by 80%</li>
+              <li>Created a Python profile system to store resume, skills, and projects, streamlining job applications with reusable templates</li>
+              <li>Enabled users to edit AI-generated letters with HTML/CSS interface, ensuring ATS-friendly format and professional customization</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2306b6d4' rx='8'/%3E%3Cg transform='translate(10,10)'%3E%3Crect x='5' y='5' width='10' height='10' fill='%23ff6b6b'/%3E%3Crect x='20' y='5' width='10' height='10' fill='%234ecdc4'/%3E%3Crect x='35' y='5' width='10' height='10' fill='%23ffe66d'/%3E%3Crect x='50' y='5' width='10' height='10' fill='%23a8e6cf'/%3E%3Crect x='65' y='5' width='10' height='10' fill='%23ff8b94'/%3E%3Crect x='5' y='20' width='10' height='10' fill='%23b4a7d6'/%3E%3Crect x='20' y='20' width='10' height='10' fill='%23d4a574'/%3E%3Crect x='35' y='20' width='10' height='10' fill='%2395e1d3'/%3E%3Crect x='50' y='20' width='10' height='10' fill='%23f38ba8'/%3E%3Crect x='65' y='20' width='10' height='10' fill='%23a6e3a1'/%3E%3Crect x='20' y='35' width='10' height='10' fill='%23fab387'/%3E%3Crect x='35' y='35' width='10' height='10' fill='%2389b4fa'/%3E%3Crect x='50' y='35' width='10' height='10' fill='%23cba6f7'/%3E%3Crect x='35' y='50' width='10' height='10' fill='%23f9e2af'/%3E%3Crect x='50' y='50' width='10' height='10' fill='%23eba0ac'/%3E%3Crect x='35' y='65' width='10' height='10' fill='%2394e2d5'/%3E%3C/g%3E%3C/svg%3E" alt="Tetris Game" class="logo"/>
+              <div class="card-title">
+                <h3>Tetris Game</h3>
+                <p class="project-tech">Dec 2024 | C++, Git, Linux</p>
+              </div>
+              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <ul class="card-body">
+              <li>Built a two-player Tetris game in C++ with both graphical and console modes, featuring multiple difficulty levels and row clearing mechanics</li>
+              <li>Implemented competitive "Blind" effect that temporarily obscures opponent's board when clearing two rows, adding strategic gameplay elements</li>
+              <li>Added high score tracking, multi-round gameplay, and restart functionality for enhanced user experience and replayability</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scroll-progress">
+          <div class="scroll-progress-bar" id="projects-progress"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="certifications">
+    <div class="container">
+      <h2 class="section-title">Certifications & Achievements</h2>
+      <div class="scroll-controls">
+        <button class="scroll-btn scroll-left" data-section="certifications"><i class="fas fa-chevron-left"></i></button>
+        <button class="scroll-btn scroll-right" data-section="certifications"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="horizontal-scroll-container">
+        <div class="scroll-content cert-grid auto-scrolling" id="certifications-scroll">
+          <div class="cert-card card">
+            <i class="fab fa-microsoft cert-icon"></i>
+            <h3>Microsoft Azure AI Fundamentals</h3>
+            <p>AI-900 Certification - Demonstrates foundational knowledge of machine learning and artificial intelligence concepts on Microsoft Azure</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Comprehensive understanding of AI workloads and considerations</li>
+                <li>Fundamental principles of machine learning on Azure</li>
+                <li>Features of computer vision workloads on Azure</li>
+                <li>Features of Natural Language Processing (NLP) workloads on Azure</li>
+              </ul>
+            </div>
+            <a href="https://www.credly.com/badges/500fc9cf-e2ba-4673-b4f1-03f055a0817c/linked_in_profile" target="_blank">View Certificate</a>
+          </div>
+
+          <div class="cert-card card">
+            <i class="fab fa-microsoft cert-icon"></i>
+            <h3>Microsoft Azure Fundamentals</h3>
+            <p>AZ-900 Certification - Foundational level understanding of Azure services, workloads, security, and governance</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Core Azure services and solutions</li>
+                <li>Azure pricing, support, and Service Level Agreements</li>
+                <li>Security, privacy, compliance, and trust in Azure</li>
+                <li>Azure governance and management features</li>
+              </ul>
+            </div>
+            <a href="https://www.credly.com/badges/c5741844-d803-461e-84bd-574e4b6acb96/linked_in_profile" target="_blank">View Certificate</a>
+          </div>
+
+          <div class="cert-card card">
+            <i class="fas fa-chart-line cert-icon"></i>
+            <h3>Microsoft Data Analytics</h3>
+            <p>Coursera Certification - Comprehensive program covering the entire data analysis process from collection to presentation</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Data collection, cleaning, and analysis techniques</li>
+                <li>Data visualization using various tools and platforms</li>
+                <li>Statistical analysis and hypothesis testing</li>
+                <li>Professional data analysis project portfolio</li>
+              </ul>
+            </div>
+            <a href="https://www.linkedin.com/learning/certificates/1796572d325261016b9b10e25112b34587a9bd23338fb5247a78964636765102?u=55034593" target="_blank">View Certificate</a>
+          </div>
+
+          <div class="cert-card card">
+            <i class="fas fa-building cert-icon"></i>
+            <h3>Strategy Consultant Program</h3>
+            <p>Virtual Experience Program - Hands-on experience in consulting, technology, and business transformation</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Business analysis and problem-solving methodologies</li>
+                <li>Technology consulting and implementation strategies</li>
+                <li>Client communication and presentation skills</li>
+                <li>Project management and team collaboration</li>
+              </ul>
+            </div>
+            <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Accenture%20Australia/MD2p8dDih7zoQ9KRC_Accenture%20Australia_Qvmc2kA8A8dm7ocJF_1659636009529_completion_certificate.pdf" target="_blank">View Certificate</a>
+          </div>
+
+          <div class="cert-card card">
+            <i class="fas fa-database cert-icon"></i>
+            <h3>HTML</h3>
+            <p>Professional Certification - Comprehensive HTML course</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <!--<li>Advanced SQL query optimization and performance tuning</li>-->
+                <!--<li>Database design principles and normalization</li>-->
+                <!--<li>Stored procedures, triggers, and functions</li>-->
+                <!--<li>Data warehousing and business intelligence concepts</li>-->
+              </ul>
+            </div>
+            <a href="https://www.sololearn.com/en/certificates/CT-V1DSIBMC" target="_blank">View Certificate</a>
+          </div>
+
+          <!-- Duplicate cards for infinite scroll -->
+          <div class="cert-card card">
+            <i class="fab fa-microsoft cert-icon"></i>
+            <h3>Microsoft Azure AI Fundamentals</h3>
+            <p>AI-900 Certification - Demonstrates foundational knowledge of machine learning and artificial intelligence concepts on Microsoft Azure</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Comprehensive understanding of AI workloads and considerations</li>
+                <li>Fundamental principles of machine learning on Azure</li>
+                <li>Features of computer vision workloads on Azure</li>
+                <li>Features of Natural Language Processing (NLP) workloads on Azure</li>
+              </ul>
+            </div>
+            <a href="https://www.linkedin.com/in/gaurikagupta1/" target="_blank">View Certificate</a>
+          </div>
+
+          <div class="cert-card card">
+            <i class="fab fa-microsoft cert-icon"></i>
+            <h3>Microsoft Azure Fundamentals</h3>
+            <p>AZ-900 Certification - Foundational level understanding of Azure services, workloads, security, and governance</p>
+            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
+            <div class="card-body">
+              <ul>
+                <li>Core Azure services and solutions</li>
+                <li>Azure pricing, support, and Service Level Agreements</li>
+                <li>Security, privacy, compliance, and trust in Azure</li>
+                <li>Azure governance and management features</li>
+              </ul>
+            </div>
+            <a href="https://www.linkedin.com/in/gaurikagupta1/" target="_blank">View Certificate</a>
+          </div>
+        </div>
+        <div class="scroll-progress">
+          <div class="scroll-progress-bar" id="certifications-progress"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Let's Connect</h3>
+          <p>I'm always interested in discussing new opportunities, collaborations, or just having a conversation about technology, mathematics, and innovation. Whether you're a recruiter, fellow developer, or someone interested in my work, I'd love to hear from you.</p>
+          
+          <div style="margin: 2rem 0;">
+            <p><strong><i class="fas fa-envelope"></i> Email:</strong> <a href="mailto:g5gupta@uwaterloo.ca">g5gupta@uwaterloo.ca</a></p>
+            <p><strong><i class="fas fa-phone"></i> Phone:</strong> <a href="tel:+15485774062">+1 (548) 577-4062</a></p>
+            <p><strong><i class="fab fa-linkedin"></i> LinkedIn:</strong> <a href="https://linkedin.com/in/gaurikagupta1" target="_blank">linkedin.com/in/gaurikagupta1</a></p>
+            <p><strong><i class="fab fa-github"></i> GitHub:</strong> <a href="https://github.com/Gaurika-G" target="_blank">github.com/Gaurika-G</a></p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> Waterloo, ON, Canada</p>
+          </div>
+          
+          <div class="form-message" id="formMessage"></div>
+        </div>
+        
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Your Full Name" required/>
+          <input type="email" name="email" placeholder="Your Email Address" required/>
+          <input type="text" name="subject" placeholder="Subject" required/>
+          <textarea name="message" rows="6" placeholder="Tell me about your project, opportunity, or just say hello..." required></textarea>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Gaurika Gupta. All rights reserved. | Built with passion for mathematics and technology | University of Waterloo Mathematics Student</p>
+    </div>
+  </footer>
+
+  <script>
+    // Typing Effect
+    const typingText = document.getElementById('typing-text');
+    const words = ['Machine Learning Engineer', 'Full-stack Developer', 'Data Scientist', 'Software Engineer'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+      const currentChar = currentWord.substring(0, charIndex);
+      typingText.textContent = currentChar;
+      typingText.classList.add('typing-cursor');
+
+      if (!isDeleting && charIndex < currentWord.length) {
+        charIndex++;
+        typingSpeed = 100;
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        isDeleting = !isDeleting;
+        wordIndex = !isDeleting ? (wordIndex + 1) % words.length : wordIndex;
+        typingSpeed = isDeleting ? 1500 : 500;
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+    }
+
+    // Auto-scroll functionality
+    function setupAutoScroll() {
+      const scrollSections = ['experience', 'projects', 'certifications'];
+      
+      scrollSections.forEach(sectionName => {
+        const scrollContainer = document.querySelector(`#${sectionName} .scroll-content`);
+        const progressBar = document.getElementById(`${sectionName}-progress`);
+        const section = document.getElementById(sectionName);
+        
+        if (scrollContainer) {
+          // Pause on hover
+          scrollContainer.addEventListener('mouseenter', () => {
+            scrollContainer.classList.add('paused');
+          });
+          
+          scrollContainer.addEventListener('mouseleave', () => {
+            scrollContainer.classList.remove('paused');
+          });
+          
+          // Update progress bar
+          function updateProgress() {
+            const containerWidth = scrollContainer.parentElement.offsetWidth;
+            const contentWidth = scrollContainer.scrollWidth / 2; // Divide by 2 because we duplicated content
+            const currentTransform = scrollContainer.style.transform || 'translateX(0px)';
+            const currentX = Math.abs(parseInt(currentTransform.match(/-?\d+/) || [0])[0]);
+            const progress = (currentX % contentWidth) / contentWidth * 100;
+            
+            if (progressBar) {
+              progressBar.style.width = `${progress}%`;
+            }
+          }
+          
+          // Update progress every frame during animation
+          const observer = new MutationObserver(updateProgress);
+          observer.observe(scrollContainer, { attributes: true, attributeFilter: ['style'] });
+          
+          // Also update on animation frame for smooth progress
+          function animateProgress() {
+            updateProgress();
+            requestAnimationFrame(animateProgress);
+          }
+          animateProgress();
+        }
+      });
+    }
+
+    // Expandable card functionality
+    function setupExpandableCards() {
+      const toggleButtons = document.querySelectorAll('.toggle-btn');
+      
+      toggleButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = e.currentTarget.closest('.card');
+          const body = card.querySelector('.card-body');
+          const isOpen = body.classList.contains('active');
+          
+          // Close all other cards in the same section
+          const section = card.closest('.cards-section, .certifications');
+          const allCards = section.querySelectorAll('.card');
+          allCards.forEach(otherCard => {
+            if (otherCard !== card) {
+              const otherBody = otherCard.querySelector('.card-body');
+              const otherBtn = otherCard.querySelector('.toggle-btn');
+              if (otherBody) {
+                otherBody.classList.remove('active');
+                otherBody.style.display = 'none';
+              }
+              if (otherBtn) {
+                otherBtn.classList.remove('active');
+              }
+            }
+          });
+          
+          // Toggle current card
+          if (isOpen) {
+            body.classList.remove('active');
+            body.style.display = 'none';
+            e.currentTarget.classList.remove('active');
+          } else {
+            body.classList.add('active');
+            body.style.display = 'block';
+            e.currentTarget.classList.add('active');
+          }
+        });
+      });
+
+      // Also allow clicking on the entire card to expand/collapse
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          // Don't trigger if clicking on the toggle button or links
+          if (e.target.closest('.toggle-btn') || e.target.tagName === 'A') {
+            return;
+          }
+          
+          const toggleBtn = card.querySelector('.toggle-btn');
+          if (toggleBtn) {
+            toggleBtn.click();
+          }
+        });
+      });
+    }
+
+    // Manual scroll functionality for sections
+    function setupManualScroll() {
+      const scrollButtons = document.querySelectorAll('.scroll-btn');
+      
+      scrollButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const direction = btn.classList.contains('scroll-left') ? -1 : 1;
+          const sectionName = btn.getAttribute('data-section');
+          const scrollContainer = document.querySelector(`#${sectionName} .scroll-content`);
+          
+          if (scrollContainer) {
+            // Pause auto-scroll temporarily
+            scrollContainer.classList.add('paused');
+            scrollContainer.style.animation = 'none';
+            
+            const scrollAmount = 400;
+            const currentTransform = scrollContainer.style.transform || 'translateX(0px)';
+            const currentX = parseInt(currentTransform.match(/-?\d+/) || [0])[0];
+            const newX = currentX + (direction * scrollAmount);
+            
+            const containerWidth = scrollContainer.parentElement.offsetWidth;
+            const contentWidth = scrollContainer.scrollWidth / 2; // Divide by 2 because content is duplicated
+            const maxScroll = -(contentWidth - containerWidth);
+            
+            // Handle infinite scroll wrapping
+            let boundedX = newX;
+            if (newX < maxScroll) {
+              boundedX = 0; // Reset to beginning
+            } else if (newX > 0) {
+              boundedX = maxScroll; // Go to end
+            }
+            
+            scrollContainer.style.transform = `translateX(${boundedX}px)`;
+            
+            // Resume auto-scroll after a delay
+            setTimeout(() => {
+              scrollContainer.classList.remove('paused');
+              scrollContainer.style.animation = '';
+            }, 3000);
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Start typing effect
+      setTimeout(typeEffect, 1000);
+
+      // Setup auto-scroll
+      setupAutoScroll();
+
+      // Setup expandable cards
+      setupExpandableCards();
+
+      // Setup manual scroll
+      setupManualScroll();
+
+      // Contact form handling with EmailJS simulation
+      const contactForm = document.getElementById('contactForm');
+      const formMessage = document.getElementById('formMessage');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const formData = new FormData(contactForm);
+          const submitBtn = contactForm.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+          
+          // Show loading state
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+          submitBtn.disabled = true;
+          
+          try {
+            // Get form data
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto URL
+            const mailtoUrl = `mailto:g5gupta@uwaterloo.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+              `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+            )}`;
+            
+            // Open default email client
+            window.location.href = mailtoUrl;
+            
+            // Simulate some delay for better UX
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            formMessage.textContent = 'Your email client has been opened with the message. Please send the email to complete your request.';
+            formMessage.className = 'form-message success';
+            contactForm.reset();
+            
+          } catch (error) {
+            console.error('Error:', error);
+            formMessage.textContent = 'There was an error processing your request. Please try again or email directly at g5gupta@uwaterloo.ca.';
+            formMessage.className = 'form-message error';
+          } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }
+          
+          formMessage.style.opacity = '1';
+          
+          // Hide message after 8 seconds
+          setTimeout(() => {
+            formMessage.style.opacity = '0';
+          }, 8000);
+        });
+      }
+
+      // Mobile menu toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          
+          // Animate hamburger bars
+          const bars = hamburger.querySelectorAll('.bar');
+          if (hamburger.classList.contains('active')) {
+            bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+          } else {
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+          }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            
+            const bars = hamburger.querySelectorAll('.bar');
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+          });
+        });
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for scroll animations
+      const animateElements = document.querySelectorAll('.skills-column, .about-info, .contact-info');
+      animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+      });
+
+      // Parallax effect for hero section
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.home');
+        if (parallax) {
+          const speed = scrolled * 0.5;
+          parallax.style.transform = `translateY(${speed}px)`;
+        }
+      });
+
+      // Add loading animation on page load
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+    });
+  </script>
+</body>
+</html>
