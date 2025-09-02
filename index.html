@@ -424,14 +424,13 @@
     }
 
     .skills-column {
-        background: linear-gradient(145deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
-        padding: 2.5rem;
-        border-radius: 24px;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        backdrop-filter: blur(15px);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
     .skills-column::before {
@@ -468,21 +467,18 @@
     }
 
     .skills-column:hover {
-        transform: translateY(-12px) scale(1.02);
-        background: linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
-        border-color: rgba(59, 130, 246, 0.5);
-        box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.35);
     }
-
+    
     .skills-column h3 {
-        color: #3b82f6;
-        font-size: 1.4rem;
-        margin-bottom: 2rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     .skills-column h3 i {
@@ -494,49 +490,85 @@
     }
 
     .skills-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
     }
 
     .skill-tag {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-        color: #f8fafc;
-        padding: 0.75rem 1.25rem;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        border: 2px solid rgba(59, 130, 246, 0.3);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
+      background: rgba(59, 130, 246, 0.15);
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      transition: all 0.3s ease;
     }
-
-    .skill-tag::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        transition: left 0.6s ease;
-    }
-
-    .skill-tag:hover::before {
-        left: 100%;
-    }
-
+    
     .skill-tag:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-        border-color: rgba(59, 130, 246, 0.6);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-        color: #ffffff;
+      background: rgba(59, 130, 246, 0.3);
+      transform: scale(1.05);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .skills-section {
+        grid-template-columns: 1fr;
+      }
     }
 
+    .skills-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 2rem 0;
+      text-align: center;
+      color: #f1f5f9;
+      letter-spacing: -0.01em;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-card {
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 16px;
+      padding: 1.25rem;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(59, 130, 246, 0.35);
+    }
+    
+    .skill-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #60a5fa;
+    }
+    
+    .skill-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .skill-card ul li {
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+    
     /* Cards Section Styles */
     .cards-section {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -1128,8 +1160,9 @@
         }
         
         .skills-section {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
         }
         
         .contact-grid {
@@ -1262,17 +1295,19 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-grid">
         <div class="about-image">
-          <img src="images/Gaurika headshot LinkedIn pic.jpg" alt="Gaurika Gupta - Mathematics Student at University of Waterloo" class="headshot" />
+          <img src="images/Gaurika headshot LinkedIn pic.jpg" alt="Gaurika Gupta - Mathematics Student" class="headshot"/>
         </div>
         <div class="about-info">
           <h3>Mathematics Student & Technology Enthusiast</h3>
-          <p>I'm currently pursuing a <strong>Bachelor of Mathematics with a Minor in Computing</strong> at the University of Waterloo, one of Canada's top universities for mathematics and computer science.</p>
-          <p>My academic journey focuses on <strong>Applied Mathematics and Scientific Machine Learning</strong>, where I blend rigorous mathematical theory with practical applications in data science and software development.</p>
-          <p>I'm passionate about leveraging mathematical models and computational techniques to solve real-world problems, from infectious disease modeling to automated business solutions.</p>
-          
+          <p>I'm currently pursuing a <strong>Bachelor of Mathematics with a Minor in Computing</strong> at the University of Waterloo.</p>
+          <p>My academic journey focuses on <strong>Applied Mathematics and Scientific Machine Learning</strong>.</p>
+          <p>I'm passionate about leveraging mathematical models and computational techniques to solve real-world problems.</p>
+
+          <!-- Core Skills -->
+          <h3 class="skills-title">Core Skills</h3>
           <div class="skills-section">
             <div class="skills-column">
-              <h3><i class="fas fa-code"></i> Programming Languages</h3>
+              <h3><i class="fas fa-code"></i> Programming</h3>
               <div class="skills-list">
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">R</span>
@@ -1283,22 +1318,21 @@
               </div>
             </div>
             <div class="skills-column">
-              <h3><i class="fas fa-tools"></i> Technologies & Platforms</h3>
+              <h3><i class="fas fa-tools"></i> Technologies</h3>
               <div class="skills-list">
                 <span class="skill-tag">Linux</span>
                 <span class="skill-tag">Bash</span>
                 <span class="skill-tag">Git</span>
                 <span class="skill-tag">Power BI</span>
                 <span class="skill-tag">SharePoint</span>
-                <span class="skill-tag">Amazon QuickSight</span>
                 <span class="skill-tag">Azure</span>
               </div>
             </div>
             <div class="skills-column">
-              <h3><i class="fas fa-laptop-code"></i> Tools & Software</h3>
+              <h3><i class="fas fa-laptop-code"></i> Tools</h3>
               <div class="skills-list">
-                <span class="skill-tag">Microsoft Excel</span>
-                <span class="skill-tag">Jupyter Notebooks</span>
+                <span class="skill-tag">Excel</span>
+                <span class="skill-tag">Jupyter</span>
                 <span class="skill-tag">Figma</span>
                 <span class="skill-tag">LaTeX</span>
                 <span class="skill-tag">Cloud Services</span>
@@ -1309,6 +1343,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Experience -->
   <section id="experience" class="cards-section">
@@ -1559,7 +1594,6 @@
             <i class="fab fa-microsoft cert-icon"></i>
             <h3>Microsoft Azure AI Fundamentals</h3>
             <p>AI-900 Certification - Demonstrates foundational knowledge of machine learning and artificial intelligence concepts on Microsoft Azure</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
             <div class="card-body">
               <ul>
                 <li>Comprehensive understanding of AI workloads and considerations</li>
@@ -1575,7 +1609,6 @@
             <i class="fab fa-microsoft cert-icon"></i>
             <h3>Microsoft Azure Fundamentals</h3>
             <p>AZ-900 Certification - Foundational level understanding of Azure services, workloads, security, and governance</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
             <div class="card-body">
               <ul>
                 <li>Core Azure services and solutions</li>
@@ -1591,7 +1624,6 @@
             <i class="fas fa-chart-line cert-icon"></i>
             <h3>Microsoft Data Analytics</h3>
             <p>Coursera Certification - Comprehensive program covering the entire data analysis process from collection to presentation</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
             <div class="card-body">
               <ul>
                 <li>Data collection, cleaning, and analysis techniques</li>
@@ -1607,7 +1639,6 @@
             <i class="fas fa-building cert-icon"></i>
             <h3>Strategy Consultant Program</h3>
             <p>Virtual Experience Program - Hands-on experience in consulting, technology, and business transformation</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
             <div class="card-body">
               <ul>
                 <li>Business analysis and problem-solving methodologies</li>
@@ -1623,7 +1654,6 @@
             <i class="fas fa-code cert-icon"></i>
             <h3>HTML Certification</h3>
             <p>Professional Certification - Comprehensive HTML development course with practical applications</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
             <div class="card-body">
               <ul>
                 <li>Advanced HTML5 semantic elements and structure</li>
@@ -1634,39 +1664,6 @@
             </div>
             <a href="https://www.sololearn.com/en/certificates/CT-V1DSIBMC" target="_blank">View Certificate</a>
           </div>
-
-          <!-- Duplicate cards for infinite scroll -->
-          <div class="cert-card card">
-            <i class="fab fa-microsoft cert-icon"></i>
-            <h3>Microsoft Azure AI Fundamentals</h3>
-            <p>AI-900 Certification - Demonstrates foundational knowledge of machine learning and artificial intelligence concepts on Microsoft Azure</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
-            <div class="card-body">
-              <ul>
-                <li>Comprehensive understanding of AI workloads and considerations</li>
-                <li>Fundamental principles of machine learning on Azure</li>
-                <li>Features of computer vision workloads on Azure</li>
-                <li>Features of Natural Language Processing (NLP) workloads on Azure</li>
-              </ul>
-            </div>
-            <a href="https://www.credly.com/badges/500fc9cf-e2ba-4673-b4f1-03f055a0817c/linked_in_profile" target="_blank">View Certificate</a>
-          </div>
-
-          <div class="cert-card card">
-            <i class="fab fa-microsoft cert-icon"></i>
-            <h3>Microsoft Azure Fundamentals</h3>
-            <p>AZ-900 Certification - Foundational level understanding of Azure services, workloads, security, and governance</p>
-            <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
-            <div class="card-body">
-              <ul>
-                <li>Core Azure services and solutions</li>
-                <li>Azure pricing, support, and Service Level Agreements</li>
-                <li>Security, privacy, compliance, and trust in Azure</li>
-                <li>Azure governance and management features</li>
-              </ul>
-            </div>
-            <a href="https://www.credly.com/badges/c5741844-d803-461e-84bd-574e4b6acb96/linked_in_profile" target="_blank">View Certificate</a>
-          </div>
         </div>
         <div class="scroll-progress">
           <div class="scroll-progress-bar" id="certifications-progress"></div>
@@ -1674,6 +1671,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Contact -->
   <section id="contact" class="contact">

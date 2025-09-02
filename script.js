@@ -72,48 +72,76 @@ function setupExpandableCards() {
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
-      // Don't trigger if clicking on the toggle button or links
-      if (e.target.closest('.toggle-btn') || e.target.tagName === 'A') {
-        return;
-      }
-      
+      if (e.target.closest('.toggle-btn') || e.target.tagName === 'A') return;
       const toggleBtn = card.querySelector('.toggle-btn');
-      if (toggleBtn) {
-        toggleBtn.click();
-      }
+      if (toggleBtn) toggleBtn.click();
     });
   });
 }
 
-// Manual scroll functionality for sections
+// Manual scroll functionality (fixed directions)
 function setupManualScroll() {
   const scrollButtons = document.querySelectorAll('.scroll-btn');
   
   scrollButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const direction = btn.classList.contains('scroll-left') ? -1 : 1;
+    btn.addEventListener('click', () => {
+      const direction = btn.classList.contains('scroll-left') ? 1 : -1; // ✅ fixed
       const sectionName = btn.getAttribute('data-section');
       const scrollContainer = document.querySelector(`#${sectionName} .scroll-content`);
       
       if (scrollContainer) {
-        const scrollAmount = 400; // Amount to scroll in pixels
+        const scrollAmount = 400; 
         const currentTransform = scrollContainer.style.transform || 'translateX(0px)';
         const currentX = parseInt(currentTransform.match(/-?\d+/) || [0])[0];
         const newX = currentX + (direction * scrollAmount);
-        
-        // Get container width and content width for bounds checking
+
         const containerWidth = scrollContainer.parentElement.offsetWidth;
         const contentWidth = scrollContainer.scrollWidth;
         const maxScroll = -(contentWidth - containerWidth);
-        
-        // Bound the scroll position
+
         const boundedX = Math.max(maxScroll, Math.min(0, newX));
-        
         scrollContainer.style.transform = `translateX(${boundedX}px)`;
       }
     });
   });
 }
+
+// Auto-scroll setup for certificates
+function setupAutoScroll(sectionId, duration = 30) { // ✅ faster
+  const scrollContainer = document.querySelector(`#${sectionId} .scroll-content`);
+  if (!scrollContainer) return;
+
+  const items = [...scrollContainer.children];
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    scrollContainer.appendChild(clone);
+  });
+
+  scrollContainer.style.display = "flex";
+  scrollContainer.style.animation = `scroll-${sectionId} ${duration}s linear infinite`;
+}
+
+// Inject smooth keyframes
+function injectScrollKeyframes(sectionId) {
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes scroll-${sectionId} {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* ✅ smooth loop */
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(typeEffect, 1000);
+  setupExpandableCards();
+  setupManualScroll();
+
+  injectScrollKeyframes("certifications");
+  setupAutoScroll("certifications", 30); // ✅ restart faster like projects
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Start typing effect
@@ -178,6 +206,40 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         formMessage.style.opacity = '0';
       }, 8000);
+
+  // Auto-scroll setup for certifications
+  function setupAutoScroll(sectionId, duration = 40) {
+    const scrollContainer = document.querySelector(`#${sectionId} .scroll-content`);
+    if (!scrollContainer) return;
+
+    // Clone items once to allow seamless looping
+    const items = [...scrollContainer.children];
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      scrollContainer.appendChild(clone);
+    });
+
+    // Apply animation
+    scrollContainer.style.display = "flex";
+    scrollContainer.style.animation = `scroll-${sectionId} ${duration}s linear infinite`;
+  }
+
+  // Create keyframes dynamically
+  function injectScrollKeyframes(sectionId) {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes scroll-${sectionId} {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Initialize
+  injectScrollKeyframes("certifications");
+  setupAutoScroll("certifications", 60); // slower scroll
+
     });
   }
 
