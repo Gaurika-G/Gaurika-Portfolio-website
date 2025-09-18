@@ -27,7 +27,7 @@ function typeEffect() {
   setTimeout(typeEffect, typingSpeed);
 }
 
-// Expandable card functionality
+// Enhanced expandable card functionality
 function setupExpandableCards() {
   const toggleButtons = document.querySelectorAll('.toggle-btn');
   
@@ -38,120 +38,163 @@ function setupExpandableCards() {
       const body = card.querySelector('.card-body');
       const isOpen = body.classList.contains('active');
       
-      // Close all other cards in the same section
-      const section = card.closest('.cards-section, .certifications');
-      const allCards = section.querySelectorAll('.card');
-      allCards.forEach(otherCard => {
-        if (otherCard !== card) {
-          const otherBody = otherCard.querySelector('.card-body');
-          const otherBtn = otherCard.querySelector('.toggle-btn');
-          if (otherBody) {
-            otherBody.classList.remove('active');
-            otherBody.style.display = 'none';
-          }
-          if (otherBtn) {
-            otherBtn.classList.remove('active');
-          }
-        }
-      });
+      // Add loading state for smooth transition
+      card.classList.add('loading');
       
-      // Toggle current card
+      // Toggle current card only
       if (isOpen) {
         body.classList.remove('active');
-        body.style.display = 'none';
+        body.style.maxHeight = '0';
+        body.style.padding = '0 2.5rem';
         e.currentTarget.classList.remove('active');
       } else {
         body.classList.add('active');
-        body.style.display = 'block';
+        body.style.maxHeight = '1000px';
+        body.style.padding = '0 2.5rem 2.5rem';
         e.currentTarget.classList.add('active');
       }
+      
+      // Remove loading state after transition
+      setTimeout(() => {
+        card.classList.remove('loading');
+      }, 300);
     });
   });
 
-  // Also allow clicking on the entire card to expand/collapse
+  // Allow clicking on the entire card to expand/collapse
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
-      if (e.target.closest('.toggle-btn') || e.target.tagName === 'A') return;
+      // Don't trigger if clicking on the toggle button or links
+      if (e.target.closest('.toggle-btn') || e.target.tagName === 'A') {
+        return;
+      }
+      
       const toggleBtn = card.querySelector('.toggle-btn');
-      if (toggleBtn) toggleBtn.click();
+      if (toggleBtn) {
+        toggleBtn.click();
+      }
     });
   });
 }
 
-// Manual scroll functionality (fixed directions)
+// Enhanced manual scroll functionality
 function setupManualScroll() {
   const scrollButtons = document.querySelectorAll('.scroll-btn');
   
   scrollButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const direction = btn.classList.contains('scroll-left') ? 1 : -1; // ✅ fixed
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const direction = btn.classList.contains('scroll-left') ? 1 : -1;
       const sectionName = btn.getAttribute('data-section');
       const scrollContainer = document.querySelector(`#${sectionName} .scroll-content`);
       
       if (scrollContainer) {
-        const scrollAmount = 400; 
+        // Add loading state
+        btn.classList.add('loading');
+        
+        // Pause auto-scroll temporarily
+        scrollContainer.classList.add('paused');
+        scrollContainer.style.animation = 'none';
+        
+        const scrollAmount = 400;
         const currentTransform = scrollContainer.style.transform || 'translateX(0px)';
         const currentX = parseInt(currentTransform.match(/-?\d+/) || [0])[0];
         const newX = currentX + (direction * scrollAmount);
 
         const containerWidth = scrollContainer.parentElement.offsetWidth;
-        const contentWidth = scrollContainer.scrollWidth;
+        const contentWidth = scrollContainer.scrollWidth / 2; // Account for duplicated content
         const maxScroll = -(contentWidth - containerWidth);
 
-        const boundedX = Math.max(maxScroll, Math.min(0, newX));
+        // Handle infinite scroll wrapping
+        let boundedX = newX;
+        if (newX < maxScroll) {
+          boundedX = 0; // Reset to beginning for infinite scroll
+        } else if (newX > 0) {
+          boundedX = maxScroll; // Go to end
+        }
+
+        // Smooth transition
+        scrollContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
         scrollContainer.style.transform = `translateX(${boundedX}px)`;
+        
+        // Resume auto-scroll after delay
+        setTimeout(() => {
+          scrollContainer.classList.remove('paused');
+          scrollContainer.style.animation = '';
+          scrollContainer.style.transition = '';
+          btn.classList.remove('loading');
+        }, 3000);
       }
     });
   });
 }
 
-// Auto-scroll setup for certificates
-function setupAutoScroll(sectionId, duration = 30) { // ✅ faster
+// Enhanced auto-scroll setup for all sections
+function setupAutoScroll(sectionId, duration = 30) {
   const scrollContainer = document.querySelector(`#${sectionId} .scroll-content`);
   if (!scrollContainer) return;
 
-  const items = [...scrollContainer.children];
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    scrollContainer.appendChild(clone);
-  });
+  // Only clone if not already cloned
+  if (!scrollContainer.dataset.cloned) {
+    const items = [...scrollContainer.children];
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      scrollContainer.appendChild(clone);
+    });
+    scrollContainer.dataset.cloned = 'true';
+  }
 
   scrollContainer.style.display = "flex";
   scrollContainer.style.animation = `scroll-${sectionId} ${duration}s linear infinite`;
+  scrollContainer.classList.add('auto-scrolling');
+  
+  // Ensure proper gap between cards
+  scrollContainer.style.gap = "2rem";
 }
 
-// Inject smooth keyframes
+// Inject smooth keyframes for all sections
 function injectScrollKeyframes(sectionId) {
   const style = document.createElement("style");
   style.innerHTML = `
     @keyframes scroll-${sectionId} {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* ✅ smooth loop */
+      100% { transform: translateX(-50%); }
     }
   `;
   document.head.appendChild(style);
+}
+
+// Pause auto-scroll on hover
+function setupScrollPause() {
+  const scrollSections = ['experience', 'projects', 'certifications'];
+  
+  scrollSections.forEach(sectionName => {
+    const scrollContainer = document.querySelector(`#${sectionName} .scroll-content`);
+    if (scrollContainer) {
+      scrollContainer.addEventListener('mouseenter', () => {
+        scrollContainer.classList.add('paused');
+      });
+      
+      scrollContainer.addEventListener('mouseleave', () => {
+        scrollContainer.classList.remove('paused');
+      });
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(typeEffect, 1000);
   setupExpandableCards();
   setupManualScroll();
+  setupScrollPause();
 
-  injectScrollKeyframes("certifications");
-  setupAutoScroll("certifications", 30); // ✅ restart faster like projects
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Start typing effect
-  setTimeout(typeEffect, 1000);
-
-  // Setup expandable cards
-  setupExpandableCards();
-
-  // Setup manual scroll
-  setupManualScroll();
+  // Setup auto-scroll for all sections
+  const sections = ['experience', 'projects', 'certifications'];
+  sections.forEach(section => {
+    injectScrollKeyframes(section);
+    setupAutoScroll(section, 30);
+  });
 
   // Contact form handling with EmailJS simulation
   const contactForm = document.getElementById('contactForm');
@@ -206,40 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         formMessage.style.opacity = '0';
       }, 8000);
-
-  // Auto-scroll setup for certifications
-  function setupAutoScroll(sectionId, duration = 40) {
-    const scrollContainer = document.querySelector(`#${sectionId} .scroll-content`);
-    if (!scrollContainer) return;
-
-    // Clone items once to allow seamless looping
-    const items = [...scrollContainer.children];
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      scrollContainer.appendChild(clone);
-    });
-
-    // Apply animation
-    scrollContainer.style.display = "flex";
-    scrollContainer.style.animation = `scroll-${sectionId} ${duration}s linear infinite`;
-  }
-
-  // Create keyframes dynamically
-  function injectScrollKeyframes(sectionId) {
-    const style = document.createElement("style");
-    style.innerHTML = `
-      @keyframes scroll-${sectionId} {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // Initialize
-  injectScrollKeyframes("certifications");
-  setupAutoScroll("certifications", 60); // slower scroll
-
     });
   }
 
@@ -279,17 +288,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth scrolling for navigation links
+  // Enhanced smooth scrolling for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
-        const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+        const offsetTop = target.offsetTop - 100; // Account for fixed navbar
         window.scrollTo({
           top: offsetTop,
           behavior: 'smooth'
         });
+        
+        // Close mobile menu if open
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger && navMenu && navMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          
+          const bars = hamburger.querySelectorAll('.bar');
+          bars[0].style.transform = 'none';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = 'none';
+        }
       }
     });
   });
@@ -338,8 +360,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Add loading animation on page load
-  window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-  });
 });

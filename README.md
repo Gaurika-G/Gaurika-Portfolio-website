@@ -1,71 +1,133 @@
 # Gaurika Gupta - Portfolio Website
 
-A professional, dark-themed personal portfolio website showcasing skills, experience, projects, and certifications.
+A modern, responsive portfolio website showcasing my skills as a Mathematics student and ML Engineer at the University of Waterloo.
 
-## Features
+## 🚀 Live Website
 
-- **Dark Theme Design**: Modern, professional dark theme with red accent colors
-- **Fixed Navigation**: Always-visible navbar for easy navigation
-- **Typing Animation**: Dynamic typing effect on homepage with key skills
-- **Responsive Design**: Fully responsive across all device sizes
-- **Interactive Sections**: Hover effects, smooth scrolling, and animated elements
-- **Tabbed About Section**: Skills, Experience, and Education tabs
-- **Project Showcase**: 5 featured projects with image overlays and descriptions
-- **Certifications Display**: Professional certifications with badges
-- **Contact Form**: Integrated contact form with mailto functionality
+**Visit my portfolio:** [https://gaurika-g.github.io/Gaurika-portfolio](https://gaurika-g.github.io/Gaurika-portfolio)
 
-## Sections
+## 🛠️ Technologies Used
 
-1. **Home**: Full-screen landing with typing animation
-2. **About**: Personal information with tabbed content (Skills, Experience, Education)
-3. **Experience**: Professional experience cards with hover effects
-4. **Projects**: Featured projects with detailed descriptions
-5. **Certifications**: Professional certifications and badges
-6. **Contact**: Contact form and social links
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Styling:** Custom CSS with modern animations and responsive design
+- **Fonts:** Inter (Google Fonts), Playfair Display
+- **Icons:** Font Awesome 6.4.0
+- **Deployment:** GitHub Pages
 
-## Technologies Used
+## 📱 Features
 
-- HTML5
-- CSS3 (Grid, Flexbox, Animations)
-- JavaScript (ES6+)
-- Font Awesome Icons
-- Google Fonts (Poppins)
+- ✅ **Responsive Design** - Works perfectly on all devices
+- ✅ **Smooth Animations** - Professional micro-interactions
+- ✅ **Auto-scrolling Sections** - Experience, Projects, and Certifications
+- ✅ **Interactive Cards** - Expandable content with smooth transitions
+- ✅ **Company Logos** - Professional branding integration
+- ✅ **Contact Form** - Direct email integration
+- ✅ **Modern UI/UX** - Clean, recruiter-friendly design
 
-## Setup Instructions
+## 🏃‍♂️ Quick Start (Local Development)
 
-1. Clone or download the repository
-2. Add your images to the `images/` directory:
-   - `headshot.jpg` - Your professional headshot
-   - `background.jpg` - Background image for home section
-   - Project images: `tetris.jpg`, `ai-cover.jpg`, `amazon-tracker.jpg`, `drp-math.jpg`, `fitness-db.jpg`
-3. Open `index.html` in a web browser
-4. Customize the content as needed
+```bash
+# Navigate to project directory
+cd /path/to/Gaurika-portfolio
 
-## Image Requirements
+# Start simple server
+python3 -m http.server 8080
 
-- **Headshot**: 300x300px recommended, square format
-- **Background**: 1920x1080px recommended, landscape format
-- **Project Images**: 400x200px recommended, landscape format
+# Open browser to http://localhost:8080
+```
 
-## Customization
+## 🌐 Deploy to GitHub Pages (Free Hosting)
 
-- Update personal information in `index.html`
-- Modify colors in `styles.css` (search for `#ff4757` to change accent color)
-- Add/remove projects in the projects section
-- Update social links and contact information
+### Step 1: Create GitHub Repository
+```bash
+# Initialize git repository
+git init
 
-## Browser Support
+# Add all files
+git add .
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
+# Commit changes
+git commit -m "Initial portfolio website commit"
 
-## Contact
+# Add your GitHub repository as origin
+git remote add origin https://github.com/gaurika-g/Gaurika-portfolio.git
 
-- Email: g5gupta@uwaterloo.ca
-- LinkedIn: https://www.linkedin.com/in/gaurikagupta1/
+# Push to GitHub
+git push -u origin main
+```
+
+### Step 2: Enable GitHub Pages
+1. Go to your GitHub repository: `https://github.com/gaurika-g/Gaurika-portfolio`
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section
+4. Under **Source**, select **Deploy from a branch**
+5. Select **main** branch and **/ (root)** folder
+6. Click **Save**
+7. Your website will be available at: `https://gaurika-g.github.io/Gaurika-portfolio`
+
+### Step 3: Update and Deploy Changes
+```bash
+# Make your changes to the files
+# Then commit and push
+
+git add .
+git commit -m "Update portfolio with new features"
+git push origin main
+
+# GitHub Pages will automatically update (takes 1-2 minutes)
+```
+
+## 📁 Project Structure
+
+```
+Gaurika-portfolio/
+├── index.html          # Main HTML file
+├── styles.css          # All CSS styles and animations
+├── script.js           # JavaScript functionality
+├── images/             # All images and logos
+│   ├── KP-logo.jpg
+│   ├── UWPM-logo.jpg
+│   ├── bluent-logo.jpg
+│   └── ...
+├── README.md           # This file
+└── DEPLOYMENT.md       # Deployment guide
+```
+
+## 🎯 Key Sections
+
+1. **Hero Section** - Introduction with typing animation
+2. **About** - Personal info and skills showcase
+3. **Experience** - Professional work history with company logos
+4. **Projects** - Featured projects with detailed descriptions
+5. **Certifications** - Professional certifications and achievements
+6. **Contact** - Contact form and social links
+
+## 🔧 Customization
+
+### Update Personal Information
+- Edit `index.html` to change text content
+- Update `images/` folder with your photos and logos
+- Modify contact information in the contact section
+
+### Styling Changes
+- Edit `styles.css` for visual customizations
+- Colors, fonts, and animations can be easily modified
+- Responsive breakpoints are clearly marked
+
+### Functionality Updates
+- Edit `script.js` for interactive features
+- Auto-scroll timing and behavior
+- Form handling and animations
+
+## 📧 Contact
+
+**Gaurika Gupta**  
+Mathematics Student | ML Engineer  
+University of Waterloo  
+📧 g5gupta@uwaterloo.ca  
+🔗 [LinkedIn](https://linkedin.com/in/gaurikagupta1)  
+💻 [GitHub](https://github.com/Gaurika-G)
 
 ---
 
-© 2025 Gaurika Gupta. All rights reserved.
+*Built with ❤️ for showcasing my journey in mathematics and technology*

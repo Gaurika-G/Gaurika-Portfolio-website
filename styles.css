@@ -307,15 +307,17 @@ section {
 
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
     font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .section-title::after {
@@ -596,6 +598,13 @@ section {
     border: 2px solid rgba(59, 130, 246, 0.3);
     background: rgba(59, 130, 246, 0.1);
     flex-shrink: 0;
+    /* Fallback styling for when images don't load */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #3b82f6;
+    font-weight: bold;
 }
 
 .card-title {
@@ -604,23 +613,28 @@ section {
 
 .card-title h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #f8fafc;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .company-name {
     color: #3b82f6;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
 }
 
 .date-range, .project-tech {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
 }
 
 .toggle-btn {
@@ -657,20 +671,24 @@ section {
     display: none;
     padding: 0 2.5rem 2.5rem;
     list-style: none;
-    animation: fadeInUp 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
 .card-body.active {
     display: block;
+    max-height: 1000px;
 }
 
 .card-body li {
     color: #cbd5e1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     padding-left: 2rem;
     position: relative;
-    line-height: 1.7;
+    line-height: 1.8;
     font-size: 0.95rem;
+    letter-spacing: -0.005em;
 }
 
 .card-body li::before {
@@ -969,11 +987,13 @@ section {
     }
     
     .home-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        line-height: 1.1;
     }
     
     .home-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+        line-height: 1.3;
     }
     
     .home-buttons {
@@ -1004,10 +1024,21 @@ section {
     
     .card {
         min-width: 320px;
+        max-width: 320px;
     }
     
     .cert-card {
         min-width: 280px;
+        max-width: 280px;
+    }
+    
+    .card-header {
+        padding: 2rem;
+        gap: 1rem;
+    }
+    
+    .card-body {
+        padding: 0 2rem 2rem;
     }
     
     .section-title {
@@ -1070,4 +1101,231 @@ section {
     .skills-section {
         grid-template-columns: 1fr;
     }
+}
+
+/* Enhanced animations and transitions */
+.scroll-content {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-content.auto-scrolling {
+    animation: autoScroll 30s linear infinite;
+}
+
+.scroll-content.paused {
+    animation-play-state: paused;
+}
+
+@keyframes autoScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Professional loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Enhanced focus states for better accessibility */
+.toggle-btn:focus-visible,
+.scroll-btn:focus-visible,
+.btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Professional hover effects */
+.card:hover .logo {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Enhanced typography for better readability */
+.card-body li {
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Professional spacing improvements */
+.section-title {
+    margin-bottom: 5rem;
+}
+
+/* Enhanced mobile experience */
+@media (max-width: 768px) {
+    .home-content h1 {
+        font-size: 2.8rem;
+        line-height: 1.1;
+    }
+    
+    .home-content h2 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .card {
+        min-width: 320px;
+        max-width: 320px;
+    }
+    
+    .card-header {
+        padding: 2rem;
+        gap: 1rem;
+    }
+    
+    .logo {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .card-title h3 {
+        font-size: 1.3rem;
+    }
+    
+    .company-name {
+        font-size: 0.95rem;
+    }
+    
+    .date-range, .project-tech {
+        font-size: 0.85rem;
+    }
+}
+
+/* Enhanced card animations */
+.card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Smooth toggle animations */
+.card-body {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.card-body.active {
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced button animations */
+.toggle-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.toggle-btn.active {
+    transform: rotate(180deg) scale(1.1);
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #8b5cf6;
+}
+
+/* Enhanced scroll button animations */
+.scroll-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.scroll-btn:active {
+    transform: scale(0.95);
+}
+
+/* Smooth navbar transitions */
+.navbar {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced skill tag animations */
+.skill-tag {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Enhanced section animations */
+section {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card, .cert-card, .scroll-btn, .toggle-btn {
+    will-change: transform;
+}
+
+.scroll-content {
+    will-change: transform;
+}
+
+/* Enhanced focus states for accessibility */
+.nav-link:focus,
+.btn:focus,
+.toggle-btn:focus,
+.scroll-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Improved scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
 }
