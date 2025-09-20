@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my skills as a Mathematics stu
 
 ## 🚀 Live Website
 
-**Visit my portfolio:** [https://gaurika-g.github.io/Gaurika-portfolio](https://gaurika-g.github.io/Gaurika-portfolio)
+**Visit my portfolio:** [https://gaurika-g.github.io/Gaurika-Portfolio-website/](https://gaurika-g.github.io/Gaurika-Portfolio-website/)
 
 ## 🛠️ Technologies Used
 
