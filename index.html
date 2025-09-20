@@ -39,8 +39,19 @@
 
   <!-- Home -->
   <section id="home" class="home">
-    <div class="home-background-image"></div>
+    <div class="home-background-image" style="background: 
+            linear-gradient(135deg, rgba(15, 23, 42, 0.2) 0%, rgba(30, 41, 59, 0.2) 100%),
+            url('images/darkened-background.jpg') center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;"></div>
     <div class="home-overlay"></div>
+    <!-- Floating particles -->
+    <div class="floating-particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-particle" style="top: 60%; left: 85%; animation-delay: -2s;"></div>
+    <div class="floating-particle" style="top: 80%; left: 15%; animation-delay: -4s;"></div>
+    <div class="floating-particle" style="top: 30%; left: 90%; animation-delay: -1s;"></div>
+    <div class="floating-particle" style="top: 70%; left: 5%; animation-delay: -3s;"></div>
     <div class="home-content">
       <h1>Hi, I'm <span class="highlight">Gaurika Gupta</span></h1>
       <h2>I'm a <span id="typing-text"></span></h2>
@@ -68,7 +79,7 @@
         </div>
         <div class="about-info">
           <h3>Mathematics Student & Technology Enthusiast</h3>
-          <p>I'm currently pursuing a <strong>Bachelor of Mathematics with a Minor in Computing</strong> at the University of Waterloo, one of Canada's top-ranked institutions for mathematics and computer science.</p>
+          <p>I'm currently pursuing a <strong>Bachelor in Applied Mathematics (Machine Learning Specialization) and Statistics Double Major, along with a Computer Science Minor</strong> at the University of Waterloo, one of Canada's top-ranked institutions for mathematics and computer science.</p>
           <p>My academic journey focuses on <strong>Applied Mathematics and Scientific Machine Learning</strong>, combining theoretical foundations with practical applications.</p>
           <p>I'm passionate about leveraging mathematical models and computational techniques to solve real-world problems, with a particular interest in data-driven decision making and algorithmic optimization.</p>
 
@@ -138,6 +149,30 @@
               <li>Built an interactive visual inventory report on their website using React, Flask, and SQL, integrated with Epicor ERP, allowing users to identify where materials are stored on a plant layout and instantly view live quantities and properties—improving inventory traceability and warehouse planning.</li>
               <li>Implemented advanced filters for material type, inventory status (finished, WIP, scrap), colour, and end date, enabling precise searches and highlighting matching inventory zones—making it easy for staff to locate specific materials across the facility.</li>
               <li>Developed real-time Andon dashboards for sorting and baling operations using React and Flask APIs, displaying current jobs, upcoming tasks, progress metrics, and inventory stats—boosting operator efficiency, tracking, and productivity.</li>
+              
+              <!-- Video Demo Section -->
+              <div class="video-demo-section">
+                <h4 class="video-title">Project Demo</h4>
+                <div class="video-container">
+                  <!-- 
+                    TO ADD YOUR VIDEO:
+                    1. Place your video file in the 'images' folder (e.g., 'kal-polymers-demo.mp4')
+                    2. Replace the src below with your video path
+                    3. Remove this comment block
+                  -->
+                  <!-- <video class="project-video" controls preload="metadata" poster="images/kal-polymers-thumbnail.jpg">
+                    <source src="images/kal-polymers-demo.mp4" type="video/mp4">
+                    <source src="images/kal-polymers-demo.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                  </video> -->
+                  
+                  <!-- Placeholder until video is added -->
+                  <div class="video-placeholder">
+                    <div class="play-icon">▶</div>
+                    <p>Video Demo Coming Soon</p>
+                  </div>
+                </div>
+              </div>
             </ul>
           </div>
 
@@ -207,6 +242,30 @@
               <li>Built an interactive visual inventory report on their website using React, Flask, and SQL, integrated with Epicor ERP, allowing users to identify where materials are stored on a plant layout and instantly view live quantities and properties—improving inventory traceability and warehouse planning.</li>
               <li>Implemented advanced filters for material type, inventory status (finished, WIP, scrap), colour, and end date, enabling precise searches and highlighting matching inventory zones—making it easy for staff to locate specific materials across the facility.</li>
               <li>Developed real-time Andon dashboards for sorting and baling operations using React and Flask APIs, displaying current jobs, upcoming tasks, progress metrics, and inventory stats—boosting operator efficiency, tracking, and productivity.</li>
+              
+              <!-- Video Demo Section -->
+              <div class="video-demo-section">
+                <h4 class="video-title">Project Demo</h4>
+                <div class="video-container">
+                  <!-- 
+                    TO ADD YOUR VIDEO:
+                    1. Place your video file in the 'images' folder (e.g., 'kal-polymers-demo.mp4')
+                    2. Replace the src below with your video path
+                    3. Remove this comment block
+                  -->
+                  <!-- <video class="project-video" controls preload="metadata" poster="images/kal-polymers-thumbnail.jpg">
+                    <source src="images/kal-polymers-demo.mp4" type="video/mp4">
+                    <source src="images/kal-polymers-demo.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                  </video> -->
+                  
+                  <!-- Placeholder until video is added -->
+                  <div class="video-placeholder">
+                    <div class="play-icon">▶</div>
+                    <p>Video Demo Coming Soon</p>
+                  </div>
+                </div>
+              </div>
             </ul>
           </div>
 
@@ -306,39 +365,6 @@
               <li>Implemented smooth animations, interactive elements, and mobile-first design approach for optimal user engagement across all devices</li>
               <li>Created dynamic typing effects, scroll-based animations, and enhanced visual appeal with optimized performance</li>
               <li>Integrated contact form with EmailJS for direct communication and ensured accessibility standards compliance</li>
-            </ul>
-          </div>
-
-          <!-- Duplicate cards for infinite scroll -->
-          <div class="card">
-            <div class="card-header">
-              <div class="logo">AI</div>
-              <div class="card-title">
-                <h3>AI Cover Letter Generator</h3>
-                <p class="project-tech">Feb 2025 | Perplexity API, Python, HTML, CSS</p>
-              </div>
-              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
-            </div>
-            <ul class="card-body">
-              <li>Designed AI tool using Perplexity API & Python, automating personalized cover letter generation and reducing application time by 80%</li>
-              <li>Created a Python profile system to store resume, skills, and projects, streamlining job applications with reusable templates</li>
-              <li>Enabled users to edit AI-generated letters with HTML/CSS interface, ensuring ATS-friendly format and professional customization</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <div class="logo">🎮</div>
-              <div class="card-title">
-                <h3>Tetris Game</h3>
-                <p class="project-tech">Dec 2024 | C++, Git, Linux</p>
-              </div>
-              <button class="toggle-btn"><i class="fas fa-chevron-down"></i></button>
-            </div>
-            <ul class="card-body">
-              <li>Built a two-player Tetris game in C++ with both graphical and console modes, featuring multiple difficulty levels and row clearing mechanics</li>
-              <li>Implemented competitive "Blind" effect that temporarily obscures opponent's board when clearing two rows, adding strategic gameplay elements</li>
-              <li>Added high score tracking, multi-round gameplay, and restart functionality for enhanced user experience and replayability</li>
             </ul>
           </div>
         </div>

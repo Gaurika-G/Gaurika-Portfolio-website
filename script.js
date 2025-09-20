@@ -33,31 +33,70 @@ function setupExpandableCards() {
   
   toggleButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
+      
       const card = e.currentTarget.closest('.card');
       const body = card.querySelector('.card-body');
       const isOpen = body.classList.contains('active');
       
-      // Add loading state for smooth transition
-      card.classList.add('loading');
+      // Get the specific section's scroll container
+      const section = card.closest('.cards-section, .certifications');
+      const sectionScrollContainer = section ? section.querySelector('.scroll-content') : null;
       
-      // Toggle current card only
+      // Close all other cards in the same section first
+      const allCardsInSection = section ? section.querySelectorAll('.card') : [];
+      allCardsInSection.forEach(otherCard => {
+        if (otherCard !== card) {
+          const otherBody = otherCard.querySelector('.card-body');
+          const otherBtn = otherCard.querySelector('.toggle-btn');
+          if (otherBody && otherBody.classList.contains('active')) {
+            otherBody.classList.remove('active');
+            otherBody.style.maxHeight = '0';
+            otherBody.style.padding = '0 2.5rem';
+            otherBody.style.overflow = 'hidden';
+          }
+          if (otherBtn) {
+            otherBtn.classList.remove('active');
+          }
+        }
+      });
+      
+      // Toggle current card
       if (isOpen) {
         body.classList.remove('active');
         body.style.maxHeight = '0';
         body.style.padding = '0 2.5rem';
+        body.style.overflow = 'hidden';
         e.currentTarget.classList.remove('active');
+        
+        // Resume auto-scroll for this section when closing
+        if (sectionScrollContainer) {
+          sectionScrollContainer.classList.remove('paused');
+          sectionScrollContainer.style.animation = '';
+        }
       } else {
         body.classList.add('active');
-        body.style.maxHeight = '1000px';
+        body.style.maxHeight = '250px'; // Fixed height for better positioning
         body.style.padding = '0 2.5rem 2.5rem';
+        body.style.overflow = 'hidden';
         e.currentTarget.classList.add('active');
+        
+        // Pause auto-scroll only for this specific section when opening
+        if (sectionScrollContainer) {
+          sectionScrollContainer.classList.add('paused');
+          sectionScrollContainer.style.animation = 'none';
+        }
+        
+        // Scroll the card into view if needed
+        setTimeout(() => {
+          card.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          });
+        }, 100);
       }
-      
-      // Remove loading state after transition
-      setTimeout(() => {
-        card.classList.remove('loading');
-      }, 300);
     });
   });
 
