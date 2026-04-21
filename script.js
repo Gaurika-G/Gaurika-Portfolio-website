@@ -48,13 +48,15 @@ function setupAutoScroll(sectionId) {
       if (x > 0) x = -half + 20;
       if (x < -half) x = 0;
       container.classList.add('paused');
+      container.style.transition = 'transform 0.25s ease';
       container.style.transform = `translateX(${x}px)`;
       setTimeout(() => {
+        container.style.transition = '';
         const pct = Math.abs(x) / half;
         container.style.animationDelay = `-${pct * 32}s`;
         container.style.transform = '';
         if (!container._cardOpen) container.classList.remove('paused');
-      }, 600);
+      }, 280);
     }
   };
 }
@@ -115,7 +117,7 @@ function setupManualScroll() {
     btn.addEventListener('click', e => {
       e.preventDefault();
       const s = scrollers[btn.dataset.section];
-      if (s) s.nudge(btn.classList.contains('scroll-left') ? 420 : -420);
+      if (s) s.nudge(btn.classList.contains('scroll-left') ? 500 : -500);
     });
   });
 }

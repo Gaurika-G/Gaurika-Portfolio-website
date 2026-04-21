@@ -127,17 +127,18 @@ body {
 /* Buttons — vertical stack, compact */
 .home-buttons {
   display: flex; flex-direction: column;
-  gap: 0.65rem; align-items: center;
+  gap: 0.5rem; align-items: center;
   opacity: 0; animation: fadeInUp 1s ease 0.9s forwards;
+  margin-top: 3rem;
 }
 
 .btn {
-  padding: 11px 28px; border: none; border-radius: 9px;
-  font-size: 0.88rem; font-weight: 600; text-decoration: none;
+  padding: 8px 20px; border: none; border-radius: 8px;
+  font-size: 0.8rem; font-weight: 600; text-decoration: none;
   transition: all 0.28s cubic-bezier(0.4,0,0.2,1); cursor: pointer;
-  display: inline-flex; align-items: center; gap: 0.45rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
   font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
-  position: relative; overflow: hidden; min-width: 180px; justify-content: center;
+  position: relative; overflow: hidden; min-width: 155px; justify-content: center;
 }
 
 .btn::before {
@@ -232,7 +233,8 @@ section { padding: 110px 0; position: relative; }
 
 .skills-title { color: #f0f2fc; font-size: 1.2rem; font-weight: 600; margin-bottom: 1.2rem; margin-top: 1.8rem; }
 
-.skills-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-top: 1.2rem; }
+.skills-section { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 1.2rem; justify-content: center; }
+.skills-column { flex: 1 1 calc(33.33% - 1.1rem); max-width: calc(33.33% - 1.1rem); min-width: 140px; }
 
 .skills-column {
   background: rgba(200,16,46,0.04); padding: 1.25rem; border-radius: 14px;
@@ -421,6 +423,7 @@ section { padding: 110px 0; position: relative; }
 .cert-card.card-expanded::before { opacity: 1; }
 
 .cert-icon { font-size: 2.8rem; background: linear-gradient(135deg, #c8102e, #ff4d6d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block; }
+.cert-icon-img { width: 48px; height: 48px; margin: 0 auto 1rem; display: block; border-radius: 8px; }
 .cert-card h3 { color: #f0f2fc; margin-bottom: 0.55rem; font-size: 1.08rem; font-weight: 600; font-family: 'Playfair Display', serif; }
 .cert-card > p { color: #7a8290; margin-bottom: 1.25rem; font-size: 0.82rem; line-height: 1.5; }
 .cert-card a { color: #e8173a; text-decoration: none; font-weight: 600; transition: all 0.25s; padding: 0.5rem 1.1rem; border: 1px solid rgba(200,16,46,0.28); border-radius: 8px; display: inline-block; background: rgba(200,16,46,0.07); font-size: 0.82rem; }
