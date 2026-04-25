@@ -2,7 +2,7 @@
 // TYPING EFFECT
 // ============================================================
 const typingText = document.getElementById('typing-text');
-const words = ['Machine Learning Engineer', 'Full-stack Developer', 'Data Scientist', 'Software Engineer'];
+const words = ['Machine Learning Engineer', 'Full-stack Developer', 'Data Scientist', 'Software Engineer', 'Test Automation Developer'];
 let wordIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 100;
 
 function typeEffect() {
