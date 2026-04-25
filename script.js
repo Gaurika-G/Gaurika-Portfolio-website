@@ -19,7 +19,7 @@ function typeEffect() {
 }
 
 // ============================================================
-// AUTO-SCROLL — CSS animation (compositor-friendly, no RAF)
+// AUTO-SCROLL — RAF-driven, no CSS animation (arrows work!)
 // ============================================================
 const scrollers = {};
 
@@ -27,6 +27,7 @@ function setupAutoScroll(sectionId) {
   const container = document.querySelector(`#${sectionId} .scroll-content`);
   if (!container || container.dataset.cloned) return;
 
+  // Clone items for seamless infinite loop
   [...container.children].forEach(item => {
     const clone = item.cloneNode(true);
     clone.dataset.isClone = 'true';
@@ -34,35 +35,48 @@ function setupAutoScroll(sectionId) {
   });
   container.dataset.cloned = 'true';
 
-  container.addEventListener('mouseenter', () => { if (!container._cardOpen) container.classList.add('paused'); });
-  container.addEventListener('mouseleave', () => { if (!container._cardOpen) container.classList.remove('paused'); });
+  // Disable CSS animation — we drive it with JS instead
+  container.style.animation = 'none';
+  container.style.willChange = 'transform';
+
+  let pos = 0;
+  let paused = false;
+  const SPEED = 0.55; // px per frame (~33px/s at 60fps)
+
+  function half() { return container.scrollWidth / 2; }
+
+  function tick() {
+    if (!paused) {
+      pos += SPEED;
+      if (pos >= half()) pos -= half();
+      container.style.transform = `translateX(-${pos}px)`;
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  container.addEventListener('mouseenter', () => { if (!container._cardOpen) paused = true; });
+  container.addEventListener('mouseleave', () => { if (!container._cardOpen) paused = false; });
 
   scrollers[sectionId] = {
-    pause()  { container._cardOpen = true;  container.classList.add('paused'); },
-    resume() { container._cardOpen = false; container.classList.remove('paused'); },
+    pause()  { container._cardOpen = true;  paused = true; },
+    resume() { container._cardOpen = false; paused = false; },
     nudge(dx) {
-      const style = getComputedStyle(container);
-      const matrix = new DOMMatrix(style.transform);
-      let x = matrix.m41 + dx;
-      const half = container.scrollWidth / 2;
-      if (x > 0) x = -half + 20;
-      if (x < -half) x = 0;
-      container.classList.add('paused');
-      container.style.transition = 'transform 0.25s ease';
-      container.style.transform = `translateX(${x}px)`;
+      // dx > 0 = left arrow (scroll back), dx < 0 = right arrow (scroll forward)
+      paused = true;
+      pos = Math.max(0, Math.min(pos - dx, half() - 1));
+      container.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+      container.style.transform = `translateX(-${pos}px)`;
       setTimeout(() => {
-        container.style.transition = '';
-        const pct = Math.abs(x) / half;
-        container.style.animationDelay = `-${pct * 32}s`;
-        container.style.transform = '';
-        if (!container._cardOpen) container.classList.remove('paused');
-      }, 280);
+        container.style.transition = 'none';
+        if (!container._cardOpen) paused = false;
+      }, 370);
     }
   };
 }
 
 // ============================================================
-// CARD EXPAND / COLLAPSE — pure CSS class toggle
+// CARD EXPAND / COLLAPSE
 // ============================================================
 function toggleCard(card) {
   if (!card) return;
@@ -74,7 +88,6 @@ function toggleCard(card) {
   const section = card.closest('section') || card.closest('.certifications');
   const sectionId = section?.id;
 
-  // Close every other open card
   document.querySelectorAll('.card-body.active').forEach(openBody => {
     const other = openBody.closest('.card');
     if (other === card) return;
@@ -98,7 +111,6 @@ function toggleCard(card) {
   }
 }
 
-// Event delegation — works on original + cloned cards
 function setupExpandableCards() {
   document.addEventListener('click', e => {
     if (e.target.tagName === 'A') return;
@@ -110,14 +122,14 @@ function setupExpandableCards() {
 }
 
 // ============================================================
-// MANUAL SCROLL BUTTONS
+// SCROLL ARROW BUTTONS
 // ============================================================
 function setupManualScroll() {
   document.querySelectorAll('.scroll-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
       const s = scrollers[btn.dataset.section];
-      if (s) s.nudge(btn.classList.contains('scroll-left') ? 500 : -500);
+      if (s) s.nudge(btn.classList.contains('scroll-left') ? 420 : -420);
     });
   });
 }

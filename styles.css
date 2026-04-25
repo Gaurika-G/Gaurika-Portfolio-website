@@ -129,7 +129,7 @@ body {
   display: flex; flex-direction: column;
   gap: 0.5rem; align-items: center;
   opacity: 0; animation: fadeInUp 1s ease 0.9s forwards;
-  margin-top: 3rem;
+  margin-top: 7rem;
 }
 
 .btn {
@@ -342,6 +342,24 @@ section { padding: 110px 0; position: relative; }
   transition: all 0.25s ease;
 }
 .card:hover .logo { border-color: rgba(200,16,46,0.55); transform: scale(1.04); }
+
+/* Icon-based logo box (replaces broken SVG data-URI images) */
+.logo-icon {
+  width: 58px; height: 58px; border-radius: 12px; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  transition: all 0.25s ease;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+}
+.card:hover .logo-icon { transform: scale(1.04); }
+
+/* Certification logo box */
+.cert-logo-icon {
+  width: 52px; height: 52px; border-radius: 10px;
+  margin: 0 auto 1rem; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
 
 .card-title { flex: 1; min-width: 0; }
 .card-title h3 {
